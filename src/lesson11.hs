@@ -1,11 +1,12 @@
 module Main (main) where
 
 import Foreign.C.Types
-import qualified Graphics.UI.SDL as SDL
-import qualified Graphics.UI.SDL.Image as Image
-import Graphics.UI.SDL.Types
+import qualified SDL.Raw as SDL
+import qualified SDL.Raw.Image as Image
+import SDL.Raw.Types
 import Shared.Assets
 import Shared.Input
+import Shared.Image
 import Shared.Lifecycle
 import Shared.Polling
 import Shared.Utilities
@@ -21,7 +22,7 @@ inWindow :: (SDL.Window -> IO ()) -> IO ()
 inWindow = withSDL . withWindow title size
 
 main :: IO ()
-main = inWindow $ \window -> Image.withImgInit [Image.InitPNG] $ do
+main = inWindow $ \window -> Shared.Image.withImgInit [Image.IMG_INIT_PNG] $ do
     _ <- setHint "SDL_RENDER_SCALE_QUALITY" "1" >>= logWarning
     renderer <- createRenderer window (-1) [SDL.SDL_RENDERER_ACCELERATED] >>= either throwSDLError return
     withAssets renderer ["./assets/dots.png"] $ \assets -> do

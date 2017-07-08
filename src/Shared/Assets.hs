@@ -3,7 +3,7 @@ module Shared.Assets (
     Asset
 ) where
 
-import qualified Graphics.UI.SDL as SDL
+import qualified SDL.Raw as SDL
 import Foreign.C.Types
 import Shared.Textures
 

@@ -1,6 +1,6 @@
 module Main (main) where
 
-import qualified Graphics.UI.SDL as SDL
+import qualified SDL.Raw as SDL
 import Shared.Lifecycle
 import Shared.Utilities
 

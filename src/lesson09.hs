@@ -1,7 +1,7 @@
 module Main (main) where
 
-import qualified Graphics.UI.SDL as SDL
-import Graphics.UI.SDL.Types
+import qualified SDL.Raw as SDL
+import SDL.Raw.Types
 import Shared.Textures
 import Shared.Input
 import Shared.Lifecycle

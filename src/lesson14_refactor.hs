@@ -4,9 +4,9 @@
 
 module Main (main) where
 
-import qualified Graphics.UI.SDL as SDL
-import qualified Graphics.UI.SDL.Image as Image
-import Graphics.UI.SDL.Types
+import qualified SDL.Raw as SDL
+import qualified SDL.Raw.Image as Image
+import SDL.Raw.Types
 import Control.Monad.State hiding (state)
 import Control.Monad.Except
 import Data.Bits
@@ -20,6 +20,7 @@ import GHC.Word
 import Shared.DrawingSimple
 import Shared.Geometry
 import Shared.Input
+import Shared.Image
 import Shared.Lifecycle
 import Shared.Polling
 import Shared.Utilities
@@ -127,7 +128,7 @@ withSDLContext :: (SDL.Renderer -> IO a) -> IO ()
 withSDLContext renderOperation = do
     setupResult <- runExceptT $ do
         initializeSDL [SDL.SDL_INIT_VIDEO]
-        Image.imgInit [Image.InitPNG]
+        Shared.Image.imgInit [Image.IMG_INIT_PNG]
         setHint RenderScaleQuality Nearest
 
         window <- createWindow title

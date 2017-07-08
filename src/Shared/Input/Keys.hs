@@ -3,8 +3,8 @@ module Shared.Input.Keys (
     getKey
 ) where
 
-import qualified Graphics.UI.SDL as SDL
-import Graphics.UI.SDL.Types
+import qualified SDL.Raw as SDL
+import SDL.Raw.Types
 
 data KeyPress
     = A

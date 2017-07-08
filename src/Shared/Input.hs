@@ -7,7 +7,7 @@ module Shared.Input (
     getKey
 ) where
 
-import qualified Graphics.UI.SDL as SDL
+import qualified SDL.Raw as SDL
 import Shared.Input.Keys
 
 type Input = Maybe SDL.Event

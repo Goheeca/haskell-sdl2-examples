@@ -2,7 +2,7 @@ module Shared.Drawing (
     withBlankScreen
 ) where
 
-import qualified Graphics.UI.SDL as SDL
+import qualified SDL.Raw as SDL
 import Control.Monad
 
 

@@ -3,9 +3,9 @@
 
 module Main (main) where
 
-import qualified Graphics.UI.SDL as SDL
-import qualified Graphics.UI.SDL.Image as Image
-import Graphics.UI.SDL.Types
+import qualified SDL.Raw as SDL
+import qualified SDL.Raw.Image as Image
+import SDL.Raw.Types
 import Control.Monad.State hiding (state)
 import Shared.Assets
 import Shared.Drawing
@@ -13,6 +13,7 @@ import Shared.Lifecycle
 import Shared.Polling
 import Shared.Utilities
 import Shared.State
+import Shared.Image
 
 
 title :: String
@@ -38,7 +39,7 @@ main = withSDLContext $ \renderer ->
         runStateT (repeatUntilComplete pollDraw) initialWorld
 
 withSDLContext :: (SDL.Renderer -> IO ()) -> IO ()
-withSDLContext f = inWindow $ \window -> Image.withImgInit [Image.InitPNG] $ do
+withSDLContext f = inWindow $ \window -> Shared.Image.withImgInit [Image.IMG_INIT_PNG] $ do
     _ <- setHint "SDL_RENDER_SCALE_QUALITY" "0" >>= logWarning
     renderer <- createRenderer window (-1) [SDL.SDL_RENDERER_ACCELERATED, SDL.SDL_RENDERER_PRESENTVSYNC] >>= either throwSDLError return
     _ <- f renderer

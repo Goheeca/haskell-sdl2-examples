@@ -8,7 +8,7 @@ module Shared.Lifecycle (
   throwSDLError
 ) where
 
-import qualified Graphics.UI.SDL as SDL
+import qualified SDL.Raw as SDL
 import Data.Bits
 import Foreign.C.String
 import Foreign.C.Types

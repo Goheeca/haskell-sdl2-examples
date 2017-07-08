@@ -3,9 +3,9 @@
 
 module Main (main) where
 
-import qualified Graphics.UI.SDL as SDL
-import qualified Graphics.UI.SDL.Image as Image
-import Graphics.UI.SDL.Types
+import qualified SDL.Raw as SDL
+import qualified SDL.Raw.Image as Image
+import SDL.Raw.Types
 import Control.Monad.State hiding (state)
 import Shared.Drawing
 import Shared.Lifecycle
@@ -14,6 +14,7 @@ import Shared.Polling
 import Shared.Utilities
 import Shared.Textures
 import Shared.State
+import Shared.Image
 
 
 title :: String
@@ -36,7 +37,7 @@ initialWorld :: World
 initialWorld = World { gameover = False, frame = 0 }
 
 main :: IO ()
-main = inWindow $ \window -> Image.withImgInit [Image.InitPNG] $ do
+main = inWindow $ \window -> Shared.Image.withImgInit [Image.IMG_INIT_PNG] $ do
     _ <- setHint "SDL_RENDER_SCALE_QUALITY" "0" >>= logWarning
     renderer <- createRenderer window (-1) [SDL.SDL_RENDERER_ACCELERATED, SDL.SDL_RENDERER_PRESENTVSYNC] >>= either throwSDLError return
     walkingTexture <- loadTexture renderer "./assets/walk.png"

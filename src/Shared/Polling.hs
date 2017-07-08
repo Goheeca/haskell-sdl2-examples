@@ -1,6 +1,6 @@
 module Shared.Polling where
 
-import qualified Graphics.UI.SDL as SDL
+import qualified SDL.Raw as SDL
 import Control.Monad
 import Foreign.Marshal.Alloc
 import Foreign.Marshal.Utils

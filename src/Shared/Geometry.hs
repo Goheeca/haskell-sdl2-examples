@@ -1,7 +1,7 @@
 module Shared.Geometry where
 
-import qualified Graphics.UI.SDL as SDL
-import Graphics.UI.SDL.Types
+import qualified SDL.Raw as SDL
+import SDL.Raw.Types
 import Foreign.C.Types
 
 toRect :: (Integral a) => a -> a -> a -> a -> SDL.Rect

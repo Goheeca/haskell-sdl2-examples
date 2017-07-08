@@ -7,7 +7,7 @@ import Control.Monad.State hiding (state)
 import Foreign.C.Types
 import Foreign.Ptr
 import GHC.Word
-import Graphics.UI.SDL.Types
+import SDL.Raw.Types
 import Shared.Drawing
 import Shared.Geometry
 import Shared.Lifecycle
@@ -15,8 +15,9 @@ import Shared.Polling
 import Shared.Textures
 import Shared.Utilities
 import Shared.State
-import qualified Graphics.UI.SDL as SDL
-import qualified Graphics.UI.SDL.Image as Image
+import Shared.Image
+import qualified SDL.Raw as SDL
+import qualified SDL.Raw.Image as Image
 
 
 title :: String
@@ -36,7 +37,7 @@ fullWindow = SDL.Rect {
     rectH = snd size }
 
 main :: IO ()
-main = inWindow $ \window -> Image.withImgInit [Image.InitPNG] $ do
+main = inWindow $ \window -> Shared.Image.withImgInit [Image.IMG_INIT_PNG] $ do
     _ <- setHint "SDL_RENDER_SCALE_QUALITY" "1" >>= logWarning
     renderer <- createRenderer window (-1) [SDL.SDL_RENDERER_ACCELERATED, SDL.SDL_RENDERER_PRESENTVSYNC] >>= either throwSDLError return
     texture <- loadTexture renderer "./assets/arrow.png"

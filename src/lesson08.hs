@@ -1,8 +1,8 @@
 module Main (main) where
 
 import Foreign.C.Types
-import qualified Graphics.UI.SDL as SDL
-import Graphics.UI.SDL.Types
+import qualified SDL.Raw as SDL
+import SDL.Raw.Types
 import Shared.Input
 import Shared.Lifecycle
 import Shared.Polling

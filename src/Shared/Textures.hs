@@ -1,7 +1,7 @@
 module Shared.Textures where
 
-import qualified Graphics.UI.SDL as SDL
-import qualified Graphics.UI.SDL.Image as Image
+import qualified SDL.Raw as SDL
+import qualified SDL.Image as Image
 import Foreign.C.Types
 import Foreign.Ptr
 import Shared.Lifecycle
@@ -21,7 +21,7 @@ destroyTextures :: [SDL.Texture] -> IO ()
 destroyTextures = mapM_ SDL.destroyTexture
 
 loadTexture :: SDL.Renderer -> String -> IO SDL.Texture
-loadTexture renderer path = Image.imgLoadTexture renderer path >>= either throwSDLError return
+loadTexture renderer path = Shared.Image.imgLoadTexture renderer path >>= either throwSDLError return
 
 loadTextureAsSurface :: SDL.Renderer -> String -> IO SDL.Texture
 loadTextureAsSurface renderer path = do

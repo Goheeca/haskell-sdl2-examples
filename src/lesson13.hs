@@ -4,16 +4,17 @@ import Control.Monad.State hiding (state)
 import Foreign.Marshal.Utils
 import Foreign.Ptr
 import GHC.Word
-import Graphics.UI.SDL.Types
+import SDL.Raw.Types
 import Shared.Drawing
 import Shared.Input
+import Shared.Image
 import Shared.Lifecycle
 import Shared.Assets
 import Shared.Polling
 import Shared.Utilities
 import Shared.State
-import qualified Graphics.UI.SDL as SDL
-import qualified Graphics.UI.SDL.Image as Image
+import qualified SDL.Raw as SDL
+import qualified SDL.Raw.Image as Image
 
 
 title :: String
@@ -37,7 +38,7 @@ initialWorld = World { gameover = False, alpha = 0 }
 
 
 main :: IO ()
-main = inWindow $ \window -> Image.withImgInit [Image.InitPNG] $ do
+main = inWindow $ \window -> Shared.Image.withImgInit [Image.IMG_INIT_PNG] $ do
     _ <- setHint "SDL_RENDER_SCALE_QUALITY" "1" >>= logWarning
     renderer <- createRenderer window (-1) [SDL.SDL_RENDERER_ACCELERATED] >>= either throwSDLError return
     withAssets renderer ["./assets/fadein.png", "./assets/fadeout.png"] $ \assets -> do

@@ -1,7 +1,8 @@
 module Main (main) where
 
-import qualified Graphics.UI.SDL as SDL
-import qualified Graphics.UI.SDL.Image as Image
+import qualified SDL.Raw as SDL
+import qualified SDL.Raw.Image as Image
+import Shared.Image
 import Shared.Input
 import Shared.Lifecycle
 import Shared.Polling
@@ -19,7 +20,7 @@ inWindow :: (SDL.Window -> IO ()) -> IO ()
 inWindow = withSDL . withWindow title size
 
 main :: IO ()
-main = inWindow $ \window -> Image.withImgInit [Image.InitPNG] $ do
+main = inWindow $ \window -> Shared.Image.withImgInit [Image.IMG_INIT_PNG] $ do
     _ <- setHint "SDL_RENDER_SCALE_QUALITY" "1" >>= logWarning
     renderer <- createRenderer window (-1) [SDL.SDL_RENDERER_ACCELERATED] >>= either throwSDLError return
     _ <- SDL.setRenderDrawColor renderer 0xFF 0xFF 0xFF 0xFF
